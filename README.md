@@ -75,36 +75,93 @@ I am a **Payments Operations Professional with 7+ years of experience** speciali
 - **Project Management Foundations** — Google / Coursera
 
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe</title>
+  <style>
+    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #f0f2f5; }
+    h1 { margin-bottom: 10px; }
+    #status { font-size: 1.2rem; margin-bottom: 20px; }
+    .board { display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px; }
+    .cell { width: 100px; height: 100px; background: #fff; border: 2px solid #333; font-size: 2.5rem; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .cell:hover { background: #e9e9e9; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 1rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Tic-Tac-Toe</h1>
+  <div id="status">Player X's Turn</div>
+  <div class="board" id="board">
+    <div class="cell" data-index="0"></div>
+    <div class="cell" data-index="1"></div>
+    <div class="cell" data-index="2"></div>
+    <div class="cell" data-index="3"></div>
+    <div class="cell" data-index="4"></div>
+    <div class="cell" data-index="5"></div>
+    <div class="cell" data-index="6"></div>
+    <div class="cell" data-index="7"></div>
+    <div class="cell" data-index="8"></div>
+  </div>
+  <button id="reset">Reset Game</button>
 
-<!-- ================================================================= -->
-<!--                   INTERACTIVE TIC-TAC-TOE GAME                    -->
-<!-- ================================================================= -->
+  <script>
+    const cells = document.querySelectorAll('.cell');
+    const statusText = document.querySelector('#status');
+    const resetBtn = document.querySelector('#reset');
+    let board = ["", "", "", "", "", "", "", "", ""];
+    let currentPlayer = "X";
+    let isGameActive = true;
 
-<div align="center">
-  <h2>🎮 Play Tic-Tac-Toe vs. GitHub AI Bot!</h2>
-  <p>Click any empty cell (⬜) below to make your move as ❌!</p>
+    const winConditions = [
+      [0,1,2], [3,4,5], [6,7,8],
+      [0,3,6], [1,4,7], [2,5,8],
+      [0,4,8], [2,4,6]
+    ];
 
-<!-- TTT GAME START -->
-<div align="center">
-<table style="border-collapse: collapse;">
-  <tr>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C0%7C0&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C0%7C1&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C0%7C2&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-  </tr>
-  <tr>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C1%7C0&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C1%7C1&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C1%7C2&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-  </tr>
-  <tr>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C2%7C0&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C2%7C1&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-    <td align="center" width="60" height="60" style="font-size:28px;"><a href="https://github.com/YOUR_USERNAME/YOUR_USERNAME/issues/new?title=ttt%7C2%7C2&body=Click+%27Submit+new+issue%27+to+confirm+your+move!">⬜</a></td>
-  </tr>
-</table>
-</div>
-<!-- TTT GAME END -->
+    function handleCellClick(e) {
+      const index = e.target.getAttribute('data-index');
+      if (board[index] !== "" || !isGameActive) return;
 
-  <p><i>Bot powered by GitHub Actions standard workflow!</i></p>
-</div>
+      board[index] = currentPlayer;
+      e.target.textContent = currentPlayer;
+      checkWinner();
+    }
+
+    function checkWinner() {
+      let won = false;
+      for (let condition of winConditions) {
+        let [a, b, c] = condition;
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          won = true;
+          break;
+        }
+      }
+
+      if (won) {
+        statusText.textContent = `Player ${currentPlayer} Wins!`;
+        isGameActive = false;
+      } else if (!board.includes("")) {
+        statusText.textContent = "Draw!";
+        isGameActive = false;
+      } else {
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+        statusText.textContent = `Player ${currentPlayer}'s Turn`;
+      }
+    }
+
+    function resetGame() {
+      board = ["", "", "", "", "", "", "", "", ""];
+      currentPlayer = "X";
+      isGameActive = true;
+      statusText.textContent = "Player X's Turn";
+      cells.forEach(cell => cell.textContent = "");
+    }
+
+    cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+    resetBtn.addEventListener('click', resetGame);
+  </script>
+</body>
+</html>
