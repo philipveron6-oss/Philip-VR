@@ -23,7 +23,7 @@
 
 ---
 
-## 👨‍💻 About Me
+## About Me
 
 I am a **Payments Operations Professional with 7+ years of experience** specializing in card-transaction disputes, customer investigations, claims processing, and compliance-focused workflows. Currently at **Walmart**, I own complex, high-value chargeback cases end-to-end—applying Mastercard and Visa scheme rules, investigating root causes, and implementing AI-assisted workflow automations.
 
@@ -33,7 +33,7 @@ I am a **Payments Operations Professional with 7+ years of experience** speciali
 
 ---
 
-## 🛠 Core Skills & Systems
+## Core Skills & Systems
 
 | Domain | Systems & Tools |
 |:---|:---|
@@ -44,7 +44,7 @@ I am a **Payments Operations Professional with 7+ years of experience** speciali
 
 ---
 
-## 💼 Professional Experience
+## Professional Experience
 
 ### **Senior Resolution Coordinator — Chargebacks & Disputes** · Walmart
 *Bangalore, India | Feb 2026 – Present*
@@ -54,20 +54,23 @@ I am a **Payments Operations Professional with 7+ years of experience** speciali
 - Leverage AI-assisted workflow automation and SQL analysis to streamline dispute operations.
 
 ### **Underwriting & Operations Specialist** · Roc360
-*Chennai, India | Mar 2022 – Nov 2024*
-- Reviewed financial-claim documentation, maintained a centralized decision framework, and supported KYC/AML compliance.
+*Chennai, India | Dec 2024 – Sep 2025*
+- Reviewed financial-claim documentation in accordance with applicable regulations and guidelines, identifying discrepancies and initiating escalations.
+- Maintained control and efficiency while ensuring data privacy and operational risk management frameworks to facilitate KYC/AML compliance requirements.
 
 ### **Senior Associate — Technical & Billing Support** · Sutherland
-*Chennai, India | Jan 2019 – Feb 2022*
+*Chennai, India | Mar 2022 – Nov 2024*
 - Handled escalations for complex billing cases maintaining **95%+ SLA performance**.
+- Conducted root-cause and data analysis to identify operational gap areas and implement corrective action plans.
 
 ### **Process Associate — Group Benefits Claims** · Cognizant
-*Chennai, India | Jan 2019 – Feb 2022*
-- Processed U.S. benefits claims using the Oracle Disability Claims system under strict data-privacy standards.
+*Chennai, India | Jan 2019 – Mar 2022*
+- Processed U.S. health and welfare benefits claims using the Oracle Disability Claims system under strict data-privacy standards.
+- Executed evidence reviews, documentation verification, and claim adjudication workflows.
 
 ---
 
-## 🚀 Projects
+## Projects
 
 ### 🌟 [PyPortfolio-Craft · Automated Professional Portfolio & README Generator](https://github.com/philipveronraj/pyportfolio-craft)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat-square&logo=python&logoColor=white)](https://python.org)
@@ -77,15 +80,15 @@ I am a **Payments Operations Professional with 7+ years of experience** speciali
 An open-source Python tool built to empower professionals and job seekers to build stunning, high-converting Markdown READMEs and interactive portfolio sites in minutes.
 
 - 🎯 **Features:**
-  - **Interactive Web Interface:** Built with Python & Streamlit for real-time portfolio generation and custom theme styling.
-  - **ATS & Recruiter Optimized:** Embeds dynamic SVG banners, typing animations, skill tables, and custom badge matrices.
-  - **One-Click Export:** Instantly generates and downloads ready-to-use `README.md` files for GitHub profiles.
+  - **Interactive Web App Interface:** Built with Python & Streamlit for instant real-time visualization and dynamic customization.
+  - **ATS & Recruiter Optimized:** Embeds dynamic SVG banners, typing animations, skill tables, and interactive badge sets.
+  - **Automated Export:** Generates ready-to-use `README.md` files and web-ready code with single-click copy and download functionality.
 
-👉 **[Launch Live Generator Tool](https://pyportfolio-craft.streamlit.app/)** | **[View GitHub Repository](https://github.com/philipveronraj/pyportfolio-craft)**
+👉 **[Try the Live Generator Tool](https://pyportfolio-craft.streamlit.app/)** | **[View GitHub Repository](https://github.com/philipveronraj/pyportfolio-craft)**
 
 ---
 
-## 🎓 Education & Certifications
+## Education & Certifications
 
 - **B.Sc. Biotechnology** — Pondicherry University
 - **Diploma in Business Administration** — UniAthena (FEDE)
@@ -94,9 +97,10 @@ An open-source Python tool built to empower professionals and job seekers to bui
 
 ---
 
-## 💬 Recommendations
+## Recommendations
 
-> *"Philip has good communication skills and goes the extra mile to upskill his knowledge and be up to date with industry trends. His passion for creating a positive impact will help him grow and succeed in any company he joins."*[span_0](start_span)[span_0](end_span)
+> *"Philip has good communication skills and goes the extra mile to upskill his knowledge and be up to date with industry trends. His passion for creating a positive impact will help him grow and succeed in any company he joins."*
 >
-> — **Adithi C Shiyal**[span_1](start_span)[span_1](end_span)  
-> *AVP Learning & Development | LMS & Digital Learning | Content Design & Strategy* · **Roc360**[span_2](start_span)[span_2](end_span)
+> — **Adithi C Shiyal**  
+> *AVP Learning & Development | LMS & Digital Learning | Content Design & Strategy* · **Roc360**
+> 
