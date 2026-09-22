@@ -80,88 +80,309 @@ I am a **Payments Operations Professional with 7+ years of experience** speciali
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic-Tac-Toe</title>
+  <title>Neon Defender - GitHub Single File Game</title>
   <style>
-    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #f0f2f5; }
-    h1 { margin-bottom: 10px; }
-    #status { font-size: 1.2rem; margin-bottom: 20px; }
-    .board { display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px; }
-    .cell { width: 100px; height: 100px; background: #fff; border: 2px solid #333; font-size: 2.5rem; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-    .cell:hover { background: #e9e9e9; }
-    button { margin-top: 20px; padding: 10px 20px; font-size: 1rem; cursor: pointer; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #0a0c16;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    #game-container {
+      position: relative;
+      box-shadow: 0 0 35px rgba(0, 255, 204, 0.25);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 204, 0.2);
+    }
+    canvas {
+      background: #05070f;
+      display: block;
+    }
+    .ui-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(5, 7, 15, 0.88);
+      backdrop-filter: blur(6px);
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2.8rem;
+      color: #00ffcc;
+      text-shadow: 0 0 12px #00ffcc;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    p {
+      color: #a0aec0;
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    button {
+      background: linear-gradient(135deg, #00ffcc, #0099ff);
+      border: none;
+      color: #05070f;
+      padding: 14px 36px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+    }
+    .hidden {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
-  <h1>Tic-Tac-Toe</h1>
-  <div id="status">Player X's Turn</div>
-  <div class="board" id="board">
-    <div class="cell" data-index="0"></div>
-    <div class="cell" data-index="1"></div>
-    <div class="cell" data-index="2"></div>
-    <div class="cell" data-index="3"></div>
-    <div class="cell" data-index="4"></div>
-    <div class="cell" data-index="5"></div>
-    <div class="cell" data-index="6"></div>
-    <div class="cell" data-index="7"></div>
-    <div class="cell" data-index="8"></div>
+
+  <div id="game-container">
+    <canvas id="canvas" width="800" height="500"></canvas>
+    
+    <div id="start-screen" class="ui-layer">
+      <h1>NEON DEFENDER</h1>
+      <p>Use <b>Arrow Keys / WASD</b> or <b>Mouse</b> to control the ship.<br>Blasters auto-fire when active.</p>
+      <button id="start-btn">START GAME</button>
+    </div>
+
+    <div id="game-over-screen" class="ui-layer hidden">
+      <h1 style="color: #ff3366; text-shadow: 0 0 12px #ff3366;">GAME OVER</h1>
+      <p>Final Score: <span id="final-score" style="color: #00ffcc; font-weight: bold;">0</span></p>
+      <button id="restart-btn">PLAY AGAIN</button>
+    </div>
   </div>
-  <button id="reset">Reset Game</button>
 
   <script>
-    const cells = document.querySelectorAll('.cell');
-    const statusText = document.querySelector('#status');
-    const resetBtn = document.querySelector('#reset');
-    let board = ["", "", "", "", "", "", "", "", ""];
-    let currentPlayer = "X";
-    let isGameActive = true;
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const startScreen = document.getElementById('start-screen');
+    const gameOverScreen = document.getElementById('game-over-screen');
+    const finalScoreEl = document.getElementById('final-score');
 
-    const winConditions = [
-      [0,1,2], [3,4,5], [6,7,8],
-      [0,3,6], [1,4,7], [2,5,8],
-      [0,4,8], [2,4,6]
-    ];
+    let gameActive = false;
+    let score = 0;
+    let frame = 0;
 
-    function handleCellClick(e) {
-      const index = e.target.getAttribute('data-index');
-      if (board[index] !== "" || !isGameActive) return;
+    const player = {
+      x: canvas.width / 2,
+      y: canvas.height - 60,
+      size: 18,
+      speed: 7
+    };
 
-      board[index] = currentPlayer;
-      e.target.textContent = currentPlayer;
-      checkWinner();
+    let bullets = [];
+    let enemies = [];
+    let particles = [];
+    const keys = {};
+
+    window.addEventListener('keydown', (e) => keys[e.code] = true);
+    window.addEventListener('keyup', (e) => keys[e.code] = false);
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!gameActive) return;
+      const rect = canvas.getBoundingClientRect();
+      player.x = e.clientX - rect.left;
+      player.y = e.clientY - rect.top;
+    });
+
+    function spawnEnemy() {
+      const size = Math.random() * 18 + 14;
+      enemies.push({
+        x: Math.random() * (canvas.width - size * 2) + size,
+        y: -size,
+        size: size,
+        speed: Math.random() * 2.5 + 1.5,
+        color: `hsl(${Math.random() * 60 + 330}, 100%, 60%)`
+      });
     }
 
-    function checkWinner() {
-      let won = false;
-      for (let condition of winConditions) {
-        let [a, b, c] = condition;
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-          won = true;
-          break;
+    function createParticles(x, y, color) {
+      for (let i = 0; i < 14; i++) {
+        particles.push({
+          x: x,
+          y: y,
+          dx: (Math.random() - 0.5) * 7,
+          dy: (Math.random() - 0.5) * 7,
+          size: Math.random() * 4 + 1.5,
+          alpha: 1,
+          color: color
+        });
+      }
+    }
+
+    function update() {
+      if (!gameActive) return;
+      frame++;
+
+      // Keyboard Controls
+      if (keys['ArrowLeft'] || keys['KeyA']) player.x -= player.speed;
+      if (keys['ArrowRight'] || keys['KeyD']) player.x += player.speed;
+      if (keys['ArrowUp'] || keys['KeyW']) player.y -= player.speed;
+      if (keys['ArrowDown'] || keys['KeyS']) player.y += player.speed;
+
+      // Keep Player within Canvas
+      player.x = Math.max(player.size, Math.min(canvas.width - player.size, player.x));
+      player.y = Math.max(player.size, Math.min(canvas.height - player.size, player.y));
+
+      // Auto Shooting
+      if (frame % 7 === 0) {
+        bullets.push({ x: player.x, y: player.y - player.size, speed: 11 });
+      }
+
+      // Update Bullets
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        bullets[i].y -= bullets[i].speed;
+        if (bullets[i].y < 0) bullets.splice(i, 1);
+      }
+
+      // Spawn Enemies
+      if (frame % 30 === 0) spawnEnemy();
+
+      // Update Enemies & Collision Detection
+      for (let eIdx = enemies.length - 1; eIdx >= 0; eIdx--) {
+        const enemy = enemies[eIdx];
+        enemy.y += enemy.speed;
+
+        // Player Collision
+        const distToPlayer = Math.hypot(player.x - enemy.x, player.y - enemy.y);
+        if (distToPlayer < player.size + enemy.size) {
+          endGame();
+          return;
+        }
+
+        // Bullet Hit Collision
+        for (let bIdx = bullets.length - 1; bIdx >= 0; bIdx--) {
+          const bullet = bullets[bIdx];
+          const dist = Math.hypot(bullet.x - enemy.x, bullet.y - enemy.y);
+          if (dist < enemy.size) {
+            createParticles(enemy.x, enemy.y, enemy.color);
+            enemies.splice(eIdx, 1);
+            bullets.splice(bIdx, 1);
+            score += 10;
+            break;
+          }
+        }
+
+        if (enemy && enemy.y > canvas.height + enemy.size) {
+          enemies.splice(eIdx, 1);
         }
       }
 
-      if (won) {
-        statusText.textContent = `Player ${currentPlayer} Wins!`;
-        isGameActive = false;
-      } else if (!board.includes("")) {
-        statusText.textContent = "Draw!";
-        isGameActive = false;
-      } else {
-        currentPlayer = currentPlayer === "X" ? "O" : "X";
-        statusText.textContent = `Player ${currentPlayer}'s Turn`;
+      // Update Particles
+      for (let pIdx = particles.length - 1; pIdx >= 0; pIdx--) {
+        const p = particles[pIdx];
+        p.x += p.dx;
+        p.y += p.dy;
+        p.alpha -= 0.03;
+        if (p.alpha <= 0) particles.splice(pIdx, 1);
       }
     }
 
-    function resetGame() {
-      board = ["", "", "", "", "", "", "", "", ""];
-      currentPlayer = "X";
-      isGameActive = true;
-      statusText.textContent = "Player X's Turn";
-      cells.forEach(cell => cell.textContent = "");
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!gameActive) return;
+
+      // Draw Player Ship
+      ctx.fillStyle = '#00ffcc';
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = '#00ffcc';
+      ctx.beginPath();
+      ctx.moveTo(player.x, player.y - player.size);
+      ctx.lineTo(player.x - player.size, player.y + player.size);
+      ctx.lineTo(player.x + player.size, player.y + player.size);
+      ctx.closePath();
+      ctx.fill();
+
+      // Draw Bullets
+      ctx.fillStyle = '#00e5ff';
+      ctx.shadowColor = '#00e5ff';
+      bullets.forEach(b => {
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Draw Enemies
+      enemies.forEach(e => {
+        ctx.fillStyle = e.color;
+        ctx.shadowColor = e.color;
+        ctx.beginPath();
+        ctx.arc(e.x, e.y, e.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Draw Particles
+      particles.forEach(p => {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+
+      ctx.shadowBlur = 0;
+
+      // Score Display
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 18px monospace';
+      ctx.fillText(`SCORE: ${score}`, 20, 35);
     }
 
-    cells.forEach(cell => cell.addEventListener('click', handleCellClick));
-    resetBtn.addEventListener('click', resetGame);
+    function loop() {
+      update();
+      draw();
+      if (gameActive) requestAnimationFrame(loop);
+    }
+
+    function startGame() {
+      score = 0;
+      frame = 0;
+      bullets = [];
+      enemies = [];
+      particles = [];
+      player.x = canvas.width / 2;
+      player.y = canvas.height - 60;
+      gameActive = true;
+
+      startScreen.classList.add('hidden');
+      gameOverScreen.classList.add('hidden');
+      loop();
+    }
+
+    function endGame() {
+      gameActive = false;
+      finalScoreEl.innerText = score;
+      gameOverScreen.classList.remove('hidden');
+    }
+
+    document.getElementById('start-btn').addEventListener('click', startGame);
+    document.getElementById('restart-btn').addEventListener('click', startGame);
   </script>
 </body>
 </html>
