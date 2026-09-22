@@ -25,11 +25,11 @@
 
 ## About Me
 
-I am a **Payments Operations Professional with 7+ years of experience** specializing in card-transaction disputes, customer investigations, claims processing, and compliance-focused workflows[span_0](start_span)[span_0](end_span). Currently at **Walmart**, I own complex, high-value chargeback cases end-to-end—applying Mastercard and Visa scheme rules, investigating root causes, and implementing AI-assisted workflow automations[span_1](start_span)[span_1](end_span).
+I am a **Payments Operations Professional with 7+ years of experience** specializing in card-transaction disputes, customer investigations, claims processing, and compliance-focused workflows. Currently at **Walmart**, I own complex, high-value chargeback cases end-to-end—applying Mastercard and Visa scheme rules, investigating root causes, and implementing AI-assisted workflow automations.
 
-- 💳 **Domain Depth:** Card disputes, chargeback representment, risk pattern analysis, scheme rules[span_2](start_span)[span_2](end_span).
-- 🛠 **Tools & Tech:** SQL, Advanced Excel, Salesforce Service Cloud, Accertify, Genesys, Oracle[span_3](start_span)[span_3](end_span).
-- 🤖 **Automation:** AI-assisted workflow optimization and process gap reduction[span_4](start_span)[span_4](end_span).
+- 💳 **Domain Depth:** Card disputes, chargeback representment, risk pattern analysis, scheme rules.
+- 🛠 **Tools & Tech:** SQL, Advanced Excel, Salesforce Service Cloud, Accertify, Genesys, Oracle.
+- 🤖 **Automation:** AI-assisted workflow optimization and process gap reduction.
 
 ---
 
@@ -37,42 +37,42 @@ I am a **Payments Operations Professional with 7+ years of experience** speciali
 
 | Domain | Systems & Tools |
 |:---|:---|
-| **Dispute & Case Systems** | Accertify Dispute Management, Salesforce Service Cloud, Siebel CRM, Genesys, Oracle[span_5](start_span)[span_5](end_span) |
-| **Data & Analytics** | SQL, Advanced Excel, Root-Cause Analysis, Trend Reporting[span_6](start_span)[span_6](end_span) |
-| **Operations & Compliance** | Mastercard & Visa Scheme Rules, KYC/AML Support, Escalation Management, SLA Tracking[span_7](start_span)[span_7](end_span) |
-| **Automation** | AI-assisted Workflow Automation, Process Improvement[span_8](start_span)[span_8](end_span) |
+| **Dispute & Case Systems** | Accertify Dispute Management, Salesforce Service Cloud, Siebel CRM, Genesys, Oracle |
+| **Data & Analytics** | SQL, Advanced Excel, Root-Cause Analysis, Trend Reporting |
+| **Operations & Compliance** | Mastercard & Visa Scheme Rules, KYC/AML Support, Escalation Management, SLA Tracking |
+| **Automation** | AI-assisted Workflow Automation, Process Improvement |
 
 ---
 
 ## Professional Experience
 
 ### **Senior Resolution Coordinator — Chargebacks & Disputes** · Walmart
-*Bangalore, India | Feb 2026 – Present*[span_9](start_span)[span_9](end_span)
-- Own card-transaction dispute cases end-to-end across the full lifecycle applying Mastercard and Visa scheme rules[span_10](start_span)[span_10](end_span).
-- Investigate complex customer concerns, manage escalations, and maintain strict SLA compliance[span_11](start_span)[span_11](end_span).
-- Conducted workflow gap analysis and implemented corrective plans that reduced error rates by **15%**[span_12](start_span)[span_12](end_span).
-- Leverage AI-assisted workflow automation and SQL analysis to streamline dispute operations[span_13](start_span)[span_13](end_span).
+*Bangalore, India | Feb 2026 – Present*
+- Own card-transaction dispute cases end-to-end across the full lifecycle applying Mastercard and Visa scheme rules.
+- Investigate complex customer concerns, manage escalations, and maintain strict SLA compliance.
+- Conducted workflow gap analysis and implemented corrective plans that reduced error rates by **15%**.
+- Leverage AI-assisted workflow automation and SQL analysis to streamline dispute operations.
 
 ### **Underwriting & Operations Specialist** · Roc360
-*Chennai, India | Mar 2022 – Nov 2024*[span_14](start_span)[span_14](end_span)
-- Reviewed financial-claim documentation, maintained a centralized decision framework, and supported KYC/AML compliance[span_15](start_span)[span_15](end_span).
+*Chennai, India | Mar 2022 – Nov 2024*
+- Reviewed financial-claim documentation, maintained a centralized decision framework, and supported KYC/AML compliance.
 
 ### **Senior Associate — Technical & Billing Support** · Sutherland
-*Chennai, India | Jan 2019 – Feb 2022*[span_16](start_span)[span_16](end_span)
-- Handled escalations for complex billing cases maintaining **95%+ SLA performance**[span_17](start_span)[span_17](end_span).
+*Chennai, India | Jan 2019 – Feb 2022*
+- Handled escalations for complex billing cases maintaining **95%+ SLA performance**.
 
 ### **Process Associate — Group Benefits Claims** · Cognizant
-*Chennai, India | Jan 2019 – Feb 2022*[span_18](start_span)[span_18](end_span)
-- Processed U.S. benefits claims using the Oracle Disability Claims system under strict data-privacy standards[span_19](start_span)[span_19](end_span).
+*Chennai, India | Jan 2019 – Feb 2022*
+- Processed U.S. benefits claims using the Oracle Disability Claims system under strict data-privacy standards.
 
 ---
 
 ## Education & Certifications
 
-- **B.Sc. Biotechnology** — Pondicherry University[span_20](start_span)[span_20](end_span)
-- **Diploma in Business Administration** — UniAthena (FEDE)[span_21](start_span)[span_21](end_span)
-- **Google AI Professional Certificate**[span_22](start_span)[span_22](end_span)
-- **Project Management Foundations** — Google / Coursera[span_23](start_span)[span_23](end_span)
+- **B.Sc. Biotechnology** — Pondicherry University
+- **Diploma in Business Administration** — UniAthena (FEDE)
+- **Google AI Professional Certificate**
+- **Project Management Foundations** — Google / Coursera
 
 ---
 
@@ -80,12 +80,14 @@ I am a **Payments Operations Professional with 7+ years of experience** speciali
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/your-username/your-username/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Grid Snake" />
+<img src="https://raw.githubusercontent.com/philipveronraj/philipveronraj/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Grid Snake" />
 
 </div>
 
 <details>
-<summary><b>⚙️ GitHub Actions Automation Code for Snake Game (.github/workflows/snake.yml)</b></summary>
+<summary><b>⚙️ Click here to view the GitHub Action workflow required to run the Snake Game</b></summary>
+
+> Create a file in your repository at `.github/workflows/snake.yml` and paste the following code to make the snake animation run automatically:
 
 ```yaml
 name: Generate Snake Animation
@@ -121,4 +123,3 @@ jobs:
           build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
