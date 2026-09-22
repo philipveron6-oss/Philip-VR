@@ -1,5 +1,0 @@
-import subprocess
-
-# Executes another script in the same directory
-subprocess.run(["python", "another_code.py"])
-

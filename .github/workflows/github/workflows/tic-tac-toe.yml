@@ -1,0 +1,35 @@
+name: Tic Tac Toe Game Engine
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  play-game:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.issue.title, 'ttt|')
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Tic Tac Toe Engine
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/play_game.py
+
+      - name: Commit and Push Updated README & State
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md game_state.json
+          git diff --staged --quiet || git commit -m "🎮 Interactive Tic-Tac-Toe move updated [skip ci]"
+          git push
