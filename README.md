@@ -94,6 +94,7 @@ An open-source Python tool built to empower professionals and job seekers to bui
 - **Diploma in Business Administration** — UniAthena (FEDE)
 - **Google AI Professional Certificate**
 - **Project Management Foundations** — Google / Coursera
+- **Lean Six Sigma Master Black Belt Certification** —
 
 ---
 
